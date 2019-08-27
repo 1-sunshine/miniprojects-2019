@@ -11,14 +11,19 @@ import com.woowacourse.sunbook.domain.user.UserChangePassword;
 import com.woowacourse.sunbook.domain.user.UserPassword;
 import com.woowacourse.sunbook.domain.user.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    @Autowired
     public UserService(final UserRepository userRepository, final ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
@@ -36,6 +41,15 @@ public class UserService {
         if (userRepository.existsByUserEmail(userRequestDto.getUserEmail())) {
             throw new DuplicateEmailException();
         }
+    }
+
+    public List<UserResponseDto> findByUserName(final String userName) {
+        List<User> users = userRepository.findAllByUserNameLike(userName);
+
+        return users.stream()
+                .map(user -> modelMapper.map(user, UserResponseDto.class))
+                .collect(Collectors.toList())
+                ;
     }
 
     @Transactional

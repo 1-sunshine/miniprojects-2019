@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head"/>
+</head>
+<body>
+<div id="wootecobook-app">
+    <header id="header" class="header navbar">
+        <div class="header-container max-width-lg mx-auto">
+            <ul class="nav-left mrg-left-0">
+                <li>
+                    <a href="/newsfeed">
+                        <div class="logo" style="background-image: url('/images/default/icons.png')"></div>
+                    </a>
+                </li>
+                <li class="search-container">
+                <span class="search">
+                    <form action="/search" method="get">
+                        <input type="text" class="searchbox" name="userName" placeholder="검색">
+                        <button type="submit" class="search-btn">
+                            <i class="ti-search"></i>
+                        </button>
+                    </form>
+                </span>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="user-profile">
+                    <a href="/users">
+                        <img class="profile-img img-fluid" src="/images/default/eastjun_profile.jpg" alt="">
+                        <div class="user-info mrg-left-5">
+                            <span class="name pdd-right-5 text-white text-bold" id="login-user-name">eastjun</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="pointer" href="/newsfeed">
+                        <span class="text-white text-bold font-size-12">홈</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="pointer">
+                        <span class="text-white text-bold font-size-12">만들기</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="friend-btn pointer mrg-vertical-10 mrg-horizon-5" id="friend-list-btn"></div>
+                </li>
+                <li>
+                    <div class="message-btn pointer mrg-vertical-10 mrg-horizon-5"></div>
+                </li>
+                <li>
+                    <div class="notification-btn pointer mrg-vertical-10 mrg-horizon-5"></div>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div id="main-content" class="container-fluid max-width-lg mx-auto mrg-top-70">
+        <div class="row">
+            <div id="left-profile-container" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="left">
+                    <div class="left-profile">
+                        <a class="pointer">
+                            <img class="img-circle width-25px" src="/images/default/eastjun_profile.jpg">
+                            <div class="left-name-edit pointer">
+                                <a class="left-name">eastjun</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="left-menus">
+                        <ul class="left-sub-menus">
+                            <li class="left-sub-sub-menus mrg-btm-5 pointer">
+                                <div class="icons newspeed"></div>
+                                <span class="icon-name">  뉴스피드</span>
+                            </li>
+                            <li class="left-sub-sub-menus mrg-btm-5 pointer">
+                                <div class="icons message"></div>
+                                <span class="icon-name">  Messenger</span>
+                            </li>
+                            <li class="left-sub-sub-menus mrg-btm-5 pointer">
+                                <div class="icons watch"></div>
+                                <span class="icon-name">  Watch</span>
+                            </li>
+                        </ul>
+                        <ul class="left-sub-menus">
+                            <div class="left-group-title">바로가기</div>
+                            <li class="left-sub-sub-menus pointer">
+                                <div class="icons group"></div>
+                                <span class="icon-name">  우테코 1기</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div th:each="user : ${users}" class="social-feeds">
+                    <div class="card widget-compose">
+                        <ul class="list-unstyled list-info">
+                            <li>
+                                <img class="thumb-img img-circle" src="/images/default/eastjun_profile.jpg" alt="">
+                                <div class="info">
+                                    <a th:href="@{/users/{userId}(userId=${user.id})}" class="title no-pdd-vertical text-semibold inline-block" th:text="${user.userName.name}"></a>
+                                    <span class="sub-title" th:text="${user.userEmail.email}"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="fragments/common-modal"/>
+<th:block th:include="fragments/common-scripts"/>
+</body>
+</html>

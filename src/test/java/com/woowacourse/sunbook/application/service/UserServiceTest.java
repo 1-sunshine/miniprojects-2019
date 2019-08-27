@@ -10,11 +10,16 @@ import com.woowacourse.sunbook.domain.user.UserPassword;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class UserServiceTest extends MockStorage {
 
@@ -69,5 +74,16 @@ class UserServiceTest extends MockStorage {
         assertThrows(LoginException.class, () -> {
             injectUserService.update(userResponseDto, userUpdateRequestDto);
         });
+    }
+
+    @Test
+    void 사용자_이름으로_조회() {
+        List<User> users = Arrays.asList(user, author);
+        given(userRepository.findAllByUserNameLike(any(String.class))).willReturn(users);
+        given(modelMapper.map(user, UserResponseDto.class)).willReturn(mock(UserResponseDto.class));
+
+        injectUserService.findByUserName("TestName");
+
+        verify(userRepository).findAllByUserNameLike(any(String.class));
     }
 }
