@@ -68,6 +68,10 @@ const TimeApi = {
         let date = new Date(time);
         let secondDiff = Math.floor((Date.now() - date) / 1000);
 
+        secondDiff = secondDiff - 32400;
+
+        if (secondDiff < 0) secondDiff = 0;
+
         let day_diff = Math.floor(secondDiff / 86400);
 
         if ( isNaN(day_diff) || day_diff < 0 )

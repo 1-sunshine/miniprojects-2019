@@ -13,5 +13,6 @@ services:
       - MYSQL_DATABASE=sunbook
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Seoul
     command:
       ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']

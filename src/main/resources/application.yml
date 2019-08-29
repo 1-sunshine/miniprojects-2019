@@ -41,7 +41,7 @@ spring:
     datasource:
         driverClassName: com.mysql.cj.jdbc.Driver
         password: 11111111
-        url: jdbc:mysql://mydb:3306/sunbook?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+        url: jdbc:mysql://mydb:3306/sunbook?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
         username: sunshine
     jpa:
         database: mysql
