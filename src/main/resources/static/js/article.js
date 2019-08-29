@@ -61,7 +61,7 @@ const ArticleApp = (() => {
                     data.forEach(article => {
                         articleList.insertAdjacentHTML('afterbegin', articleTemplate({
                             "id": article.id,
-                            "updatedTime": article.updatedTime,
+                            "updatedTime": TimeApi.pretty(article.updatedTime),
                             "article-contents": article.articleFeature.contents.contents,
                             "article-videoUrl": article.articleFeature.videoUrl.fileUrl,
                             "article-imageUrl": article.articleFeature.imageUrl.fileUrl,
@@ -92,7 +92,7 @@ const ArticleApp = (() => {
                         document.getElementById('article-list')
                             .insertAdjacentHTML('afterbegin', articleTemplate({
                                 "id": article.id,
-                                "updatedTime": article.updatedTime,
+                                "updatedTime": TimeApi.pretty(article.updatedTime),
                                 "article-contents": article.articleFeature.contents.contents,
                                 "article-videoUrl": article.articleFeature.videoUrl.fileUrl,
                                 "article-imageUrl": article.articleFeature.imageUrl.fileUrl,

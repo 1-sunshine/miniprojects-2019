@@ -63,7 +63,7 @@ const CommentApp = (() => {
                                 "id": comment.id,
                                 "user-name": comment.authorName,
                                 "comment-contents": comment.content.contents,
-                                "updatedTime": comment.updatedTime,
+                                "updatedTime": TimeApi.pretty(comment.updatedTime),
                             }));
                         ReactionApp.service().showGoodCount('comment', comment.id);
                         CommentApp.service().showCommentCount(articleId);
