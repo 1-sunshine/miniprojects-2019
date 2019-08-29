@@ -103,7 +103,7 @@ public class ArticleService {
     }
 
     @Transactional
-    public void remove(final Long articleId, final Long userId) {
+    public boolean remove(final Long articleId, final Long userId) {
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(NotFoundArticleException::new);
         User user = userService.findById(userId);
@@ -111,7 +111,7 @@ public class ArticleService {
         if (article.isSameUser(user)) {
             articleRepository.deleteById(articleId);
 
-            return;
+            return true;
         }
 
         throw new MismatchAuthException();

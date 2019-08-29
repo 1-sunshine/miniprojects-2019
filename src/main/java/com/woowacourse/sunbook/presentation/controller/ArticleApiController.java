@@ -7,7 +7,14 @@ import com.woowacourse.sunbook.domain.article.ArticleFeature;
 import com.woowacourse.sunbook.presentation.support.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -45,9 +52,7 @@ public class ArticleApiController {
     }
 
     @DeleteMapping("/{articleId}")
-    public ResponseEntity<Void> remove(@PathVariable Long articleId, LoginUser loginUser) {
-        articleService.remove(articleId, loginUser.getId());
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Boolean> remove(@PathVariable Long articleId, LoginUser loginUser) {
+        return ResponseEntity.ok().body(articleService.remove(articleId, loginUser.getId()));
     }
 }
