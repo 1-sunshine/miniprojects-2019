@@ -102,3 +102,25 @@ const TimeApi = {
 
     },
 };
+
+const LoadingApi = {
+    loading: function () {
+        const htmlAttr = document.documentElement;
+        const header = document.getElementById('header');
+        const loader = document.getElementById('loader');
+
+        header.style.display = "none";
+        loader.style.display = "block";
+        htmlAttr.classList.add('overlay-dark');
+    },
+
+    loadingDone: function () {
+        const htmlAttr = document.documentElement;
+        const header = document.getElementById('header');
+        const loader = document.getElementById('loader');
+
+        header.style.display = "block";
+        loader.style.display = "none";
+        htmlAttr.classList.remove('overlay-dark');
+    },
+};

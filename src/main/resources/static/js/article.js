@@ -228,7 +228,7 @@ const ArticleApp = (() => {
                 });
             }
 
-
+            LoadingApi.loading();
             return Api.postImage('/upload', formData)
                 .then(res => res.json())
                 .then(fileUrl => {
@@ -260,6 +260,7 @@ const ArticleApp = (() => {
                         openRange: range,
                     };
                 }
+                LoadingApi.loadingDone();
                 return data;
             });
         };
