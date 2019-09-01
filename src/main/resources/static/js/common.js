@@ -31,8 +31,9 @@ const Api = {
     postImage: function (url, data) {
         return fetch(url, {
             method: 'POST',
-            enctype: "multipart/form-data",
             body: data,
+            headers: {
+            },
         });
     },
 };

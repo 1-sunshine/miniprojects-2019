@@ -229,12 +229,8 @@ const ArticleApp = (() => {
             }
 
 
-            return fetch('/upload', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                },
-            }).then(res => res.json())
+            return Api.postImage('/upload', formData)
+                .then(res => res.json())
                 .then(fileUrl => {
                 let imgExtension = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
                 let videoExtension = /(\.mov|\.mp4)$/i;
